@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const isGithubPages = process.env.NEXT_PUBLIC_ENV === 'GH_PAGE';
-const basePath = isGithubPages ? '/wedding' : '';
+const basePath = process.env.NEXT_PUBLIC_BASEPATH || '';
 
 const nextConfig = {
   env: {

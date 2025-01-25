@@ -3,6 +3,8 @@ import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 
 const basePath = process.env.NEXT_PUBLIC_BASEPATH || '';
+console.log("DynamicRoutingPost_process.env.NEXT_PUBLIC_BASEPATH", process.env.NEXT_PUBLIC_BASEPATH);
+console.log("DynamicRoutingPost_BASEPATH", basePath);
 
 export const metadata: Metadata = {
   title: "Dynamic Routing and Static Generation",
