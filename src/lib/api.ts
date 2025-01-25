@@ -1,19 +1,21 @@
 import { Post } from "@/interfaces/post";
 
+const basePath = process.env.NEXT_PUBLIC_BASEPATH || '';
+
 const posts: Post[] = [
   {
     slug: "dynamic-routing",
     title: "Dynamic Routing and Static Generation",
     excerpt:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.",
-    coverImage: "/assets/blog/dynamic-routing/cover.jpg",
+    coverImage: `${basePath}/assets/blog/dynamic-routing/cover.jpg`,
     date: "2020-03-16T05:35:07.322Z",
     author: {
       name: "JJ Kasper",
-      picture: "/assets/blog/authors/jj.jpeg",
+      picture: `${basePath}/assets/blog/authors/jj.jpeg`,
     },
     ogImage: {
-      url: "/assets/blog/dynamic-routing/cover.jpg",
+      url: `${basePath}/assets/blog/dynamic-routing/cover.jpg`,
     },
   },
   {
@@ -21,14 +23,14 @@ const posts: Post[] = [
     title: "Learn How to Pre-render Pages Using Static Generation with Next.js",
     excerpt:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.",
-    coverImage: "/assets/blog/hello-world/cover.jpg",
+    coverImage: `${basePath}/assets/blog/hello-world/cover.jpg`,
     date: "2020-03-16T05:35:07.322Z",
     author: {
       name: "Tim Neutkens",
-      picture: "/assets/blog/authors/tim.jpeg",
+      picture: `${basePath}/assets/blog/authors/tim.jpeg`,
     },
     ogImage: {
-      url: "/assets/blog/hello-world/cover.jpg",
+      url: `${basePath}/assets/blog/hello-world/cover.jpg`,
     },
   },
   {
@@ -36,14 +38,14 @@ const posts: Post[] = [
     title: "Preview Mode for Static Generation",
     excerpt:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.",
-    coverImage: "/assets/blog/preview/cover.jpg",
+    coverImage: `${basePath}/assets/blog/preview/cover.jpg`,
     date: "2020-03-16T05:35:07.322Z",
     author: {
       name: "Joe Haddad",
-      picture: "/assets/blog/authors/joe.jpeg",
+      picture: `${basePath}/assets/blog/authors/joe.jpeg`,
     },
     ogImage: {
-      url: "/assets/blog/preview/cover.jpg",
+      url: `${basePath}/assets/blog/preview/cover.jpg`,
     },
   },
 ];
