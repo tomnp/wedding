@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export default function NotFound() {
-  const basePath = process.env.BASEPATH || '';
+  const basePath = process.env.NEXT_PUBLIC_BASEPATH || '';
   
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">

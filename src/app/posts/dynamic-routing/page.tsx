@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 
-const basePath = process.env.BASEPATH || '';
+const basePath = process.env.NEXT_PUBLIC_BASEPATH || '';
 
 export const metadata: Metadata = {
   title: "Dynamic Routing and Static Generation",

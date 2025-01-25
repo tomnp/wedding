@@ -8,8 +8,8 @@ import { ThemeSwitcher } from "./_components/theme-switcher";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-const basePath = process.env.BASEPATH || '';
-const isGithubPages = process.env.ENV === 'GH_PAGE';
+const basePath = process.env.NEXT_PUBLIC_BASEPATH || '';
+const isGithubPages = process.env.NEXT_PUBLIC_ENV === 'GH_PAGE';
 
 export const metadata: Metadata = {
   title: `Next.js Blog Example with ${CMS_NAME}`,
