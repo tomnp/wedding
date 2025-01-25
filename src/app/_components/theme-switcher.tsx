@@ -4,110 +4,99 @@ import styles from "./switch.module.css";
 import { memo, useEffect, useState } from "react";
 
 declare global {
-  var updateDOM: () => void;
+  interface Window {
+    updateDOM?: () => void;
+  }
 }
 
-type ColorSchemePreference = "system" | "dark" | "light";
-
 const STORAGE_KEY = "nextjs-blog-starter-theme";
-const modes: ColorSchemePreference[] = ["system", "dark", "light"];
+const modes = ["system", "dark", "light"] as const;
+type ColorSchemePreference = (typeof modes)[number];
 
-/** to reuse updateDOM function defined inside injected script */
+const NoFOUCScript = `
+  (function(storageKey) {
+    const SYSTEM = "system";
+    const DARK = "dark";
+    const LIGHT = "light";
 
-/** function to be injected in script tag for avoiding FOUC (Flash of Unstyled Content) */
-export const NoFOUCScript = (storageKey: string) => {
-  /* can not use outside constants or function as this script will be injected in a different context */
-  const [SYSTEM, DARK, LIGHT] = ["system", "dark", "light"];
-
-  /** Modify transition globally to avoid patched transitions */
-  const modifyTransition = () => {
-    const css = document.createElement("style");
-    css.textContent = "*,*:after,*:before{transition:none !important;}";
-    document.head.appendChild(css);
-
-    return () => {
-      /* Force restyle */
-      getComputedStyle(document.body);
-      /* Wait for next tick before removing */
-      setTimeout(() => document.head.removeChild(css), 1);
+    const modifyTransition = () => {
+      const css = document.createElement("style");
+      css.textContent = "*,*:after,*:before{transition:none !important;}";
+      document.head.appendChild(css);
+      return () => {
+        getComputedStyle(document.body);
+        setTimeout(() => document.head.removeChild(css), 1);
+      };
     };
-  };
 
-  const media = matchMedia(`(prefers-color-scheme: ${DARK})`);
+    const media = matchMedia("(prefers-color-scheme: dark)");
+    
+    const updateDOM = () => {
+      const restoreTransitions = modifyTransition();
+      const mode = localStorage.getItem(storageKey) ?? SYSTEM;
+      const systemMode = media.matches ? DARK : LIGHT;
+      const resolvedMode = mode === SYSTEM ? systemMode : mode;
+      const classList = document.documentElement.classList;
+      if (resolvedMode === DARK) classList.add(DARK);
+      else classList.remove(DARK);
+      document.documentElement.setAttribute("data-mode", mode);
+      restoreTransitions();
+    };
 
-  /** function to add remove dark class */
-  window.updateDOM = () => {
-    const restoreTransitions = modifyTransition();
-    const mode = localStorage.getItem(storageKey) ?? SYSTEM;
-    const systemMode = media.matches ? DARK : LIGHT;
-    const resolvedMode = mode === SYSTEM ? systemMode : mode;
-    const classList = document.documentElement.classList;
-    if (resolvedMode === DARK) classList.add(DARK);
-    else classList.remove(DARK);
-    document.documentElement.setAttribute("data-mode", mode);
-    restoreTransitions();
-  };
-  window.updateDOM();
-  media.addEventListener("change", window.updateDOM);
-};
+    updateDOM();
+    media.addEventListener("change", updateDOM);
+    window.updateDOM = updateDOM;
+  })("${STORAGE_KEY}")
+`;
 
-let updateDOM: () => void;
-
-/**
- * Switch button to quickly toggle user preference.
- */
 const Switch = () => {
-  const [mode, setMode] = useState<ColorSchemePreference>(
-    () =>
-      ((typeof localStorage !== "undefined" &&
-        localStorage.getItem(STORAGE_KEY)) ??
-        "system") as ColorSchemePreference,
-  );
+  const [mounted, setMounted] = useState(false);
+  const [mode, setMode] = useState<ColorSchemePreference>("system");
 
   useEffect(() => {
-    // store global functions to local variables to avoid any interference
-    updateDOM = window.updateDOM;
-    /** Sync the tabs */
-    addEventListener("storage", (e: StorageEvent): void => {
-      e.key === STORAGE_KEY && setMode(e.newValue as ColorSchemePreference);
-    });
+    setMounted(true);
+    const storedMode = localStorage.getItem(STORAGE_KEY) as ColorSchemePreference;
+    if (storedMode) setMode(storedMode);
+
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === STORAGE_KEY) {
+        setMode((e.newValue as ColorSchemePreference) || "system");
+      }
+    };
+
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, mode);
-    updateDOM();
-  }, [mode]);
+    if (mounted) {
+      localStorage.setItem(STORAGE_KEY, mode);
+      window.updateDOM?.();
+    }
+  }, [mode, mounted]);
 
-  /** toggle mode */
-  const handleModeSwitch = () => {
-    const index = modes.indexOf(mode);
-    setMode(modes[(index + 1) % modes.length]);
-  };
+  if (!mounted) return null;
+
   return (
     <button
-      suppressHydrationWarning
       className={styles.switch}
-      onClick={handleModeSwitch}
+      onClick={() => {
+        const index = modes.indexOf(mode);
+        setMode(modes[(index + 1) % modes.length]);
+      }}
     />
   );
 };
 
 const Script = memo(() => (
-  <script
-    dangerouslySetInnerHTML={{
-      __html: `(${NoFOUCScript.toString()})('${STORAGE_KEY}')`,
-    }}
-  />
+  <script dangerouslySetInnerHTML={{ __html: NoFOUCScript }} />
 ));
 
-/**
- * This component wich applies classes and transitions.
- */
-export const ThemeSwitcher = () => {
+export function ThemeSwitcher() {
   return (
     <>
       <Script />
       <Switch />
     </>
   );
-};
+}
