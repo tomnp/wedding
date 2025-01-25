@@ -10,6 +10,6 @@ export type Post = {
   ogImage: {
     url: string;
   };
-  content: string;
+  content?: string;
   preview?: boolean;
 };
