@@ -29,10 +29,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      ENV: ${{ vars.ENV }}
-      BASEPATH: ${{ vars.BASEPATH }}
-      NEXT_PUBLIC_ENV: ${{ vars.ENV }}
-      NEXT_PUBLIC_BASEPATH: ${{ vars.BASEPATH }}
+      ENV: "GH_PAGE"
+      BASEPATH: "https://tomnp.github.io"
+      NEXT_PUBLIC_ENV: "GH_PAGE"
+      NEXT_PUBLIC_BASEPATH: "https://tomnp.github.io"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -80,16 +80,13 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: |
-          echo "Environment Variables from vars context:"
-          echo "vars.ENV: ${{ vars.ENV }}"
-          echo "vars.BASEPATH: ${{ vars.BASEPATH }}"
           echo "Environment Variables from env context:"
-          echo "env.ENV: ${{ env.ENV }}"
-          echo "env.BASEPATH: ${{ env.BASEPATH }}"
-          echo "env.NEXT_PUBLIC_ENV: ${{ env.NEXT_PUBLIC_ENV }}"
-          echo "env.NEXT_PUBLIC_BASEPATH: ${{ env.NEXT_PUBLIC_BASEPATH }}"
+          echo "ENV: $ENV"
+          echo "BASEPATH: $BASEPATH"
+          echo "NEXT_PUBLIC_ENV: $NEXT_PUBLIC_ENV"
+          echo "NEXT_PUBLIC_BASEPATH: $NEXT_PUBLIC_BASEPATH"
           mkdir -p env
-          printf "ENV=${{ vars.ENV }}\nBASEPATH=${{ vars.BASEPATH }}" > env/gh-page.env
+          printf "ENV=GH_PAGE\nBASEPATH=https://tomnp.github.io" > env/gh-page.env
           ${{ steps.detect-package-manager.outputs.manager }} run build:gh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
