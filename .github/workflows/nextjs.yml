@@ -78,6 +78,11 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: |
+          echo "Environment Variables:"
+          echo "ENV: $ENV"
+          echo "BASEPATH: $BASEPATH"
+          echo "NEXT_PUBLIC_ENV: $NEXT_PUBLIC_ENV"
+          echo "NEXT_PUBLIC_BASEPATH: $NEXT_PUBLIC_BASEPATH"
           mkdir -p env
           printf "ENV=GH_PAGE\nBASEPATH=wedding" > env/gh-page.env
           ${{ steps.detect-package-manager.outputs.manager }} run build:gh
