@@ -1,5 +1,5 @@
 import { CMS_NAME } from "@/lib/constants";
-
+import Image from "next/image";
 export function Intro() {
   return (
     <section className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12">
@@ -14,6 +14,7 @@ export function Intro() {
         >
           Next.js
         </a>{" "}
+        <Image src="/assets/preview/cover.jpg" alt="Logo" width={1000} height={1000} />
         and {CMS_NAME}.
       </h4>
     </section>
