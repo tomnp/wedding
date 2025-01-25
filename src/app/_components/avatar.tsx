@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { getImagePath } from "@/lib/image-utils";
 
 type Props = {
   name: string;
@@ -10,7 +9,7 @@ const Avatar = ({ name, picture }: Props) => {
   return (
     <div className="flex items-center">
       <Image
-        src={getImagePath(picture)}
+        src={picture}
         alt={name}
         className="w-12 h-12 rounded-full mr-4"
         width={48}
