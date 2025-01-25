@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   title: "Preview Mode for Static Generation",
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.",
   openGraph: {
-    images: [`${basePath}/assets/blog/preview/cover.jpg`],
+    images: ['/assets/blog/preview/cover.jpg'],
   },
 };
 
 const author = {
   name: "Joe Haddad",
-  picture: `${basePath}/assets/blog/authors/joe.jpeg`
+  picture: '/assets/blog/authors/joe.jpeg'
 };
 
 const content = `
@@ -32,7 +32,7 @@ export default function PreviewPost() {
     <article className="mb-32">
       <PostHeader
         title="Preview Mode for Static Generation"
-        coverImage={`${basePath}/assets/blog/preview/cover.jpg`}
+        coverImage="/assets/blog/preview/cover.jpg"
         date="2020-03-16T05:35:07.322Z"
         author={author}
       />

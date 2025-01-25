@@ -18,14 +18,7 @@ const nextConfig = {
   assetPrefix: basePath,
   output: isGithubPages ? 'export' : undefined,
   images: {
-    unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'tomnp.github.io',
-        pathname: '/wedding/**'
-      }
-    ]
+    unoptimized: true
   },
   trailingSlash: true,
   distDir: isGithubPages ? 'dist' : '.next'

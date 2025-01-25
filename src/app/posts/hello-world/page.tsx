@@ -2,19 +2,17 @@ import { Metadata } from "next";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 
-const basePath = '/wedding';
-
 export const metadata: Metadata = {
   title: "Learn How to Pre-render Pages Using Static Generation with Next.js",
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.",
   openGraph: {
-    images: [`${basePath}/assets/blog/hello-world/cover.jpg`],
+    images: ['/assets/blog/hello-world/cover.jpg'],
   },
 };
 
 const author = {
   name: "Tim Neutkens",
-  picture: `${basePath}/assets/blog/authors/tim.jpeg`
+  picture: '/assets/blog/authors/tim.jpeg'
 };
 
 const content = `
@@ -32,7 +30,7 @@ export default function HelloWorldPost() {
     <article className="mb-32">
       <PostHeader
         title="Learn How to Pre-render Pages Using Static Generation with Next.js"
-        coverImage={`${basePath}/assets/blog/hello-world/cover.jpg`}
+        coverImage="/assets/blog/hello-world/cover.jpg"
         date="2020-03-16T05:35:07.322Z"
         author={author}
       />

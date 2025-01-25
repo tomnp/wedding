@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   title: "Dynamic Routing and Static Generation",
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.",
   openGraph: {
-    images: [`${basePath}/assets/blog/dynamic-routing/cover.jpg`],
+    images: ['/assets/blog/dynamic-routing/cover.jpg'],
   },
 };
 
 const author = {
   name: "JJ Kasper",
-  picture: `${basePath}/assets/blog/authors/jj.jpeg`
+  picture: '/assets/blog/authors/jj.jpeg'
 };
 
 const content = `
@@ -32,7 +32,7 @@ export default function DynamicRoutingPost() {
     <article className="mb-32">
       <PostHeader
         title="Dynamic Routing and Static Generation"
-        coverImage={`${basePath}/assets/blog/dynamic-routing/cover.jpg`}
+        coverImage="/assets/blog/dynamic-routing/cover.jpg"
         date="2020-03-16T05:35:07.322Z"
         author={author}
       />
