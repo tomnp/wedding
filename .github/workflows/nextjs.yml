@@ -29,8 +29,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_ENV: ${{ vars.NEXT_PUBLIC_ENV }}
-      NEXT_PUBLIC_BASEPATH: ${{ vars.NEXT_PUBLIC_BASEPATH }}
+      ENV: GH_PAGE
+      BASEPATH: wedding
+      NEXT_PUBLIC_ENV: GH_PAGE
+      NEXT_PUBLIC_BASEPATH: wedding
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -77,10 +79,7 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
-        run: |
-          mkdir -p env
-          printf "ENV=GH_PAGE\nBASEPATH=wedding" > env/gh-page.env
-          ${{ steps.detect-package-manager.outputs.manager }} run build:gh
+        run: ${{ steps.detect-package-manager.outputs.manager }} run build:gh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
