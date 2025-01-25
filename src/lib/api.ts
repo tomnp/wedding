@@ -1,6 +1,6 @@
 import { Post } from "@/interfaces/post";
 
-const posts: Omit<Post, "content">[] = [
+const posts: Post[] = [
   {
     slug: "dynamic-routing",
     title: "Dynamic Routing and Static Generation",
