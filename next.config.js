@@ -26,7 +26,7 @@ const nextConfig = {
 
 // Debug logging for final config
 console.log('\nNext.js Config:');
-console.log('basePath:', nextConfig.basePath);
+console.log('basePath:', basePath.basePath);
 console.log('assetPrefix:', nextConfig.assetPrefix);
 console.log('output:', nextConfig.output);
 console.log('distDir:', nextConfig.distDir);

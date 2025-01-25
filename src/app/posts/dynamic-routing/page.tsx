@@ -2,19 +2,19 @@ import { Metadata } from "next";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 
-const basePath = '/wedding';
+const basePath = process.env.BASEPATH || '';
 
 export const metadata: Metadata = {
   title: "Dynamic Routing and Static Generation",
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.",
   openGraph: {
-    images: ['/assets/blog/dynamic-routing/cover.jpg'],
+    images: [`${basePath}/assets/blog/dynamic-routing/cover.jpg`],
   },
 };
 
 const author = {
   name: "JJ Kasper",
-  picture: '/assets/blog/authors/jj.jpeg'
+  picture: `${basePath}/assets/blog/authors/jj.jpeg`
 };
 
 const content = `
@@ -32,7 +32,7 @@ export default function DynamicRoutingPost() {
     <article className="mb-32">
       <PostHeader
         title="Dynamic Routing and Static Generation"
-        coverImage="/assets/blog/dynamic-routing/cover.jpg"
+        coverImage={`${basePath}/assets/blog/dynamic-routing/cover.jpg`}
         date="2020-03-16T05:35:07.322Z"
         author={author}
       />

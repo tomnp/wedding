@@ -2,19 +2,19 @@ import { Metadata } from "next";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 
-const basePath = '/wedding';
+const basePath = process.env.BASEPATH || '';
 
 export const metadata: Metadata = {
   title: "Preview Mode for Static Generation",
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.",
   openGraph: {
-    images: ['/assets/blog/preview/cover.jpg'],
+    images: [`${basePath}/assets/blog/preview/cover.jpg`],
   },
 };
 
 const author = {
   name: "Joe Haddad",
-  picture: '/assets/blog/authors/joe.jpeg'
+  picture: `${basePath}/assets/blog/authors/joe.jpeg`
 };
 
 const content = `
@@ -32,7 +32,7 @@ export default function PreviewPost() {
     <article className="mb-32">
       <PostHeader
         title="Preview Mode for Static Generation"
-        coverImage="/assets/blog/preview/cover.jpg"
+        coverImage={`${basePath}/assets/blog/preview/cover.jpg`}
         date="2020-03-16T05:35:07.322Z"
         author={author}
       />
