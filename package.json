@@ -23,5 +23,9 @@
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.2"
+  },
+  "volta": {
+    "node": "v20.18.2",
+    "mpm": "v10.8.2"
   }
 }
