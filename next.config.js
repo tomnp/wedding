@@ -5,17 +5,13 @@ const nextConfig = {
     ENV: process.env.ENV || '',
     BASEPATH: process.env.BASEPATH || ''
   },
-  basePath: process.env.ENV === 'GH_PAGE' && process.env.BASEPATH ? `/${process.env.BASEPATH}` : '',
-  assetPrefix: process.env.ENV === 'GH_PAGE' && process.env.BASEPATH ? `/${process.env.BASEPATH}` : '',
+  basePath: process.env.ENV === 'GH_PAGE' ? '/wedding' : '',
+  assetPrefix: process.env.ENV === 'GH_PAGE' ? '/wedding' : '',
   output: process.env.ENV === 'GH_PAGE' ? 'export' : undefined,
   images: {
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**'
-      }
-    ]
+    domains: ['tomnp.github.io'],
+    path: process.env.ENV === 'GH_PAGE' ? 'https://tomnp.github.io/wedding' : ''
   },
   trailingSlash: true,
   distDir: process.env.ENV === 'GH_PAGE' ? 'dist' : '.next'
