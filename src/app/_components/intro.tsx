@@ -14,7 +14,12 @@ export function Intro() {
         >
           Next.js
         </a>{" "}
-        <Image src="/assets/preview/cover.jpg" alt="Logo" width={1000} height={1000} />
+        <Image
+          src={`${process.env.BASEPATH}/assets/preview/cover.jpg`}
+          alt="Logo"
+          width={1000}
+          height={1000}
+        />
         and {CMS_NAME}.
       </h4>
     </section>
