@@ -77,11 +77,11 @@ jobs:
         run: |
           mkdir -p env
           printf "ENV=GH_PAGE\nBASEPATH=wedding" > env/gh-page.env
-          ${{ steps.detect-package-manager.outputs.runner }} next build:gh
+          ${{ steps.detect-package-manager.outputs.manager }} run build:gh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./dist
 
   # Deployment job
   deploy:
