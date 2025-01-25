@@ -5,11 +5,6 @@ import { MoreStories } from "@/app/_components/more-stories";
 import { getAllPosts } from "@/lib/api";
 
 export default function Index() {
-  console.log("Index_ENV", process.env.NEXT_PUBLIC_ENV);
-  console.log("Index_BASEPATH", process.env.NEXT_PUBLIC_BASEPATH);
-  console.log("Index_NEXT_PUBLIC_ENV", process.env.NEXT_PUBLIC_ENV);
-  console.log("Index_NEXT_PUBLIC_BASEPATH", process.env.NEXT_PUBLIC_BASEPATH);
-
   const allPosts = getAllPosts();
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
