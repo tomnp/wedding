@@ -30,9 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ENV: "GH_PAGE"
-      BASEPATH: "https://tomnp.github.io"
+      BASEPATH: "https://tomnp.github.io/wedding"
       NEXT_PUBLIC_ENV: "GH_PAGE"
-      NEXT_PUBLIC_BASEPATH: "https://tomnp.github.io"
+      NEXT_PUBLIC_BASEPATH: "https://tomnp.github.io/wedding"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -86,7 +86,7 @@ jobs:
           echo "NEXT_PUBLIC_ENV: $NEXT_PUBLIC_ENV"
           echo "NEXT_PUBLIC_BASEPATH: $NEXT_PUBLIC_BASEPATH"
           mkdir -p env
-          printf "ENV=GH_PAGE\nBASEPATH=https://tomnp.github.io" > env/gh-page.env
+          printf "ENV=GH_PAGE\nBASEPATH=https://tomnp.github.io/wedding" > env/gh-page.env
           ${{ steps.detect-package-manager.outputs.manager }} run build:gh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
