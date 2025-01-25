@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 
-const basePath = process.env.BASEPATH || '';
+const basePath = '/wedding';
 
 export const metadata: Metadata = {
   title: "Learn How to Pre-render Pages Using Static Generation with Next.js",

@@ -6,14 +6,17 @@ console.log('ENV:', process.env.ENV);
 console.log('BASEPATH:', process.env.BASEPATH);
 console.log('Is GitHub Pages?:', process.env.ENV === 'GH_PAGE');
 
+const isGithubPages = process.env.ENV === 'GH_PAGE';
+const basePath = isGithubPages ? '/wedding' : '';
+
 const nextConfig = {
   env: {
     ENV: process.env.ENV || '',
-    BASEPATH: process.env.BASEPATH || ''
+    BASEPATH: basePath
   },
-  basePath: process.env.ENV === 'GH_PAGE' ? '/wedding' : '',
-  assetPrefix: process.env.ENV === 'GH_PAGE' ? '/wedding' : '',
-  output: process.env.ENV === 'GH_PAGE' ? 'export' : undefined,
+  basePath: basePath,
+  assetPrefix: basePath,
+  output: isGithubPages ? 'export' : undefined,
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -25,7 +28,7 @@ const nextConfig = {
     ]
   },
   trailingSlash: true,
-  distDir: process.env.ENV === 'GH_PAGE' ? 'dist' : '.next'
+  distDir: isGithubPages ? 'dist' : '.next'
 };
 
 // Debug logging for final config
