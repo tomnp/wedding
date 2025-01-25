@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: process.env.NODE_ENV === "production" ? "/wedding" : "",
+  env: {
+    ENV: process.env.ENV,
+  },
+  basePath: process.env.ENV === "GH-PAGE" ? "/wedding" : "",
   output: "export",
   images: {
     unoptimized: true,
