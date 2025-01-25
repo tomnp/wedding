@@ -74,9 +74,10 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
-        env:
-          ENV: GH-PAGE
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        run: |
+          mkdir -p env
+          printf "ENV=GH_PAGE\nBASEPATH=wedding" > env/gh-page.env
+          ${{ steps.detect-package-manager.outputs.runner }} next build:gh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
