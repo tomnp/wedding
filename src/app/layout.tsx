@@ -1,23 +1,30 @@
 import Footer from "@/app/_components/footer";
 import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Great_Vibes } from "next/font/google";
 import cn from "classnames";
 import { ThemeSwitcher } from "./_components/theme-switcher";
 
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-const basePath = process.env.NEXT_PUBLIC_BASEPATH || '';
-const isGithubPages = process.env.NEXT_PUBLIC_ENV === 'GH_PAGE';
+const greatVibes = Great_Vibes({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-great-vibes",
+});
+const basePath = process.env.NEXT_PUBLIC_BASEPATH || "";
+const isGithubPages = process.env.NEXT_PUBLIC_ENV === "GH_PAGE";
 
 export const metadata: Metadata = {
-  title: `Next.js Blog Example with ${CMS_NAME}`,
-  description: `A statically generated blog example using Next.js and ${CMS_NAME}.`,
+  title: "Wedding Invitation",
+  description: "We invite you to celebrate our special day",
   openGraph: {
     images: [HOME_OG_IMAGE_URL],
   },
-  metadataBase: isGithubPages ? new URL(`https://yourusername.github.io${basePath}`) : new URL('http://localhost:3000'),
+  metadataBase: isGithubPages
+    ? new URL(`https://yourusername.github.io${basePath}`)
+    : new URL("http://localhost:3000"),
 };
 
 export default function RootLayout({
@@ -58,14 +65,22 @@ export default function RootLayout({
           content={`${basePath}/favicon/browserconfig.xml`}
         />
         <meta name="theme-color" content="#000" />
-        <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          href={`${basePath}/feed.xml`}
+        />
       </head>
       <body
-        className={cn(inter.className, "dark:bg-slate-900 dark:text-slate-400")}
+        className={cn(
+          inter.className,
+          "dark:bg-slate-900 dark:text-slate-400",
+          greatVibes.variable
+        )}
       >
-        <ThemeSwitcher />
+        {/* <ThemeSwitcher /> */}
         <div className="min-h-screen">{children}</div>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
