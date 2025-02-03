@@ -11,7 +11,7 @@ import MusicPlayer from "@/components/MusicPlayer";
 import CoupleIntro from "@/components/CoupleIntro";
 import Slideshow from "@/components/Slideshow";
 import RsvpModal from "@/components/RsvpModal";
-import { ClassicDesign as Guestbook, ModernDesign as GuestbookModern } from "@/components/Guestbook";
+import { ClassicDesign as Guestbook } from "@/components/Guestbook";
 
 const playfair = Playfair_Display({ subsets: ["vietnamese"] });
 

@@ -1,30 +1,32 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
+import { useState } from "react";
 
 export default function RsvpForm() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    guestType: 'bride', // 'bride' or 'groom'
-    guestCount: '',
-    message: ''
-  })
+    name: "",
+    email: "",
+    phone: "",
+    guestType: "bride", // 'bride' or 'groom'
+    guestCount: "",
+    message: "",
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle form submission here
-    console.log(formData)
-  }
+    console.log(formData);
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
-    }))
-  }
+      [name]: value,
+    }));
+  };
 
   return (
     <div className="max-w-xl mx-auto">
@@ -75,7 +77,7 @@ export default function RsvpForm() {
               type="radio"
               name="guestType"
               value="bride"
-              checked={formData.guestType === 'bride'}
+              checked={formData.guestType === "bride"}
               onChange={handleChange}
               className="text-rose-600 focus:ring-rose-500"
             />
@@ -86,7 +88,7 @@ export default function RsvpForm() {
               type="radio"
               name="guestType"
               value="groom"
-              checked={formData.guestType === 'groom'}
+              checked={formData.guestType === "groom"}
               onChange={handleChange}
               className="text-rose-600 focus:ring-rose-500"
             />
@@ -140,5 +142,5 @@ export default function RsvpForm() {
         </p>
       </div>
     </div>
-  )
-} 
+  );
+}

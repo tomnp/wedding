@@ -1,43 +1,43 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { IoClose, IoArrowBack, IoArrowForward } from 'react-icons/io5'
+import { useState, useEffect } from "react";
+import { IoClose, IoArrowBack, IoArrowForward } from "react-icons/io5";
 
 type ImageLightboxProps = {
-  images: { src: string; alt: string }[]
-  currentIndex: number
-  onClose: () => void
-  onNext: () => void
-  onPrev: () => void
-}
+  images: { src: string; alt: string }[];
+  currentIndex: number;
+  onClose: () => void;
+  onNext: () => void;
+  onPrev: () => void;
+};
 
 export default function ImageLightbox({
   images,
   currentIndex,
   onClose,
   onNext,
-  onPrev
+  onPrev,
 }: ImageLightboxProps) {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-      if (e.key === 'ArrowRight') onNext()
-      if (e.key === 'ArrowLeft') onPrev()
-    }
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") onNext();
+      if (e.key === "ArrowLeft") onPrev();
+    };
 
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [onClose, onNext, onPrev])
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose, onNext, onPrev]);
 
   useEffect(() => {
     // Prevent body scroll when lightbox is open
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [])
+      document.body.style.overflow = "unset";
+    };
+  }, []);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
@@ -83,5 +83,5 @@ export default function ImageLightbox({
         {currentIndex + 1} / {images.length}
       </div>
     </div>
-  )
-} 
+  );
+}

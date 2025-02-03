@@ -46,7 +46,8 @@ export default function Slideshow() {
               fill
               className="object-cover"
               style={{
-                animation: currentSlide === index ? "zoomEffect 4s ease-in-out" : "none",
+                animation:
+                  currentSlide === index ? "zoomEffect 4s ease-in-out" : "none",
               }}
             />
           </div>

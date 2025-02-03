@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/image";
 
 export default function ParentsSection() {
   return (
@@ -36,10 +36,12 @@ export default function ParentsSection() {
           <div className="text-center mt-12">
             <h3 className="text-2xl font-semibold mb-4">TRÂN TRỌNG KÍNH MỜI</h3>
             <p className="text-gray-700 mb-2">Bạn cùng gia đình</p>
-            <p className="text-gray-600 italic">(Tới dự Lễ Thành Hôn của hai con chúng tôi)</p>
+            <p className="text-gray-600 italic">
+              (Tới dự Lễ Thành Hôn của hai con chúng tôi)
+            </p>
           </div>
         </div>
       </div>
     </section>
-  )
-} 
+  );
+}

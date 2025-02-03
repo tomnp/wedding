@@ -1,39 +1,45 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Image from 'next/image'
-import ImageLightbox from './ImageLightbox'
+import { useState } from "react";
+import Image from "next/image";
+import ImageLightbox from "./ImageLightbox";
 
 const photos = [
   {
-    src: '/images/gallery/photo1.jpeg',
-    alt: 'Wedding photo 1'
+    src: "/images/gallery/photo1.jpeg",
+    alt: "Wedding photo 1",
   },
   {
-    src: '/images/gallery/photo2.jpeg',
-    alt: 'Wedding photo 2'
+    src: "/images/gallery/photo2.jpeg",
+    alt: "Wedding photo 2",
   },
   {
-    src: '/images/gallery/photo3.jpeg',
-    alt: 'Wedding photo 3'
+    src: "/images/gallery/photo3.jpeg",
+    alt: "Wedding photo 3",
   },
   {
-    src: '/images/gallery/photo4.jpeg',
-    alt: 'Wedding photo 4'
+    src: "/images/gallery/photo4.jpeg",
+    alt: "Wedding photo 4",
   },
   {
-    src: '/images/gallery/photo5.jpeg',
-    alt: 'Wedding photo 5'
-  }
-]
+    src: "/images/gallery/photo5.jpeg",
+    alt: "Wedding photo 5",
+  },
+];
 
 export default function Gallery() {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const openLightbox = (index: number) => setLightboxIndex(index)
-  const closeLightbox = () => setLightboxIndex(null)
-  const nextImage = () => setLightboxIndex(prev => (prev === null ? null : (prev + 1) % photos.length))
-  const prevImage = () => setLightboxIndex(prev => (prev === null ? null : (prev - 1 + photos.length) % photos.length))
+  const openLightbox = (index: number) => setLightboxIndex(index);
+  const closeLightbox = () => setLightboxIndex(null);
+  const nextImage = () =>
+    setLightboxIndex((prev) =>
+      prev === null ? null : (prev + 1) % photos.length
+    );
+  const prevImage = () =>
+    setLightboxIndex((prev) =>
+      prev === null ? null : (prev - 1 + photos.length) % photos.length
+    );
 
   return (
     <section className="py-20 bg-[#FDF6F0] overflow-hidden">
@@ -44,7 +50,7 @@ export default function Gallery() {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 max-w-6xl mx-auto">
           {/* Main large photo */}
-          <div 
+          <div
             className="md:col-span-8 relative aspect-[4/3] cursor-pointer group"
             onClick={() => openLightbox(0)}
           >
@@ -61,8 +67,8 @@ export default function Gallery() {
           {/* Side photos */}
           <div className="md:col-span-4 grid grid-cols-2 md:grid-cols-1 gap-4">
             {photos.slice(1, 3).map((photo, index) => (
-              <div 
-                key={photo.src} 
+              <div
+                key={photo.src}
                 className="relative aspect-square cursor-pointer group"
                 onClick={() => openLightbox(index + 1)}
               >
@@ -81,8 +87,8 @@ export default function Gallery() {
           {/* Bottom photos */}
           <div className="md:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-4">
             {photos.slice(3).map((photo, index) => (
-              <div 
-                key={photo.src} 
+              <div
+                key={photo.src}
                 className="relative aspect-video cursor-pointer group"
                 onClick={() => openLightbox(index + 3)}
               >
@@ -101,7 +107,8 @@ export default function Gallery() {
 
         <div className="text-center mt-12">
           <p className="text-gray-600 italic max-w-2xl mx-auto px-4">
-            "Hãy để tình yêu diễn biến thật tự nhiên, đã là duyên thì cũng chẳng sợ lạc đường."
+            "Hãy để tình yêu diễn biến thật tự nhiên, đã là duyên thì cũng chẳng
+            sợ lạc đường."
           </p>
         </div>
       </div>
@@ -116,5 +123,5 @@ export default function Gallery() {
         />
       )}
     </section>
-  )
-} 
+  );
+}
